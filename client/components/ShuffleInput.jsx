@@ -15,13 +15,25 @@ function ShuffleInput(props) {
 
   return (
 
+    <Grid container>
+      <Grid item xs={12}>
+      <h3>Enter a username to shuffle</h3>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container>
+          <Grid item xs={12}>
+            <input onChange={props.handleUsernameInput}></input>
+          </Grid>
+          <Grid item xs={12}>
+            <button onClick={props.onShuffle}>Shuffle</button>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid></Grid>
+
+    </Grid>
 
 
-
-    <form id="username" >
-      <input></input>
-      <button>Shuffle</button>
-    </form>
 
   )
 
