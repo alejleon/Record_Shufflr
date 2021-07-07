@@ -1,19 +1,29 @@
-
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import ShuffleInput from './ShuffleInput';
+import {Grid} from '@material-ui/core';
 
 function App() {
+
+  const [collection, setCollection] = usestate('');
+  const [filteredCollection, setFilteredCollection] = useState('');
+
+
+
+
+
+
   return (
-    <div className="App">
+    <Grid container>
+      <Grid item xs={12}>
+        <ShuffleInput />
+      </Grid>
+      <Grid item xs={12}>
+        <RecordRender />
+      </Grid>
+    </Grid>
 
-      <header className="App-header">
-        Helloooo
-        <p>
-          From App.js
-        </p>
 
-      </header>
 
-    </div>
   );
 }
 

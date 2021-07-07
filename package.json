@@ -18,6 +18,8 @@
   },
   "homepage": "http://www.github.com",
   "dependencies": {
+    "@material-ui/core": "^4.12.1",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "express": "^4.17.0",
     "mysql": "^2.18.1",
