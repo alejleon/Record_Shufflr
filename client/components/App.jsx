@@ -13,11 +13,12 @@ function App() {
 
 
   const onShuffle = () => {
-    console.log(username)
-    axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`)
-    .then((collection) => {
-      console.log(username, collection)
-      // setCollection(collection)
+    const options = {
+      params: {username: username}
+    }
+    axios.get('http://localhost:3001/collection', options)
+    .then((response) => {
+      console.log(response.data)
     })
   }
 
