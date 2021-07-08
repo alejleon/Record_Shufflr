@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const db = require('./index.js');
+// const db = require('./index.js');
 
 const Schema = mongoose.Schema;
 
@@ -59,7 +59,7 @@ const UserCollection = mongoose.model('UserCollection', userCollectionSchema)
 
 // DATABASE QUERIES //////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-const insertCollection = (params, callback) => {
+const insertCollection = (username, releases, callback) => {
   UserCollection.create({
     username: params.username,
     releases: params.releases

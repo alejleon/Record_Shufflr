@@ -6,7 +6,7 @@ const logger = require('morgan');
 const axios = require('axios')
 const DISCOGS_TOKEN = require('../client/secrets.js')
 const UserCollection = require('../db/index.js')
-const db = require('../db');
+const db = require('../db/index.js');
 
 const PORT = process.env.PORT || 3001;
 
@@ -26,34 +26,90 @@ app.get("/test", (req, res) => {
 // Get Full Collection in Chunks ////////////////////////////////////////////////////
 app.get('/collection', (req, res) => {
   let username = req.query.username;
-  let fullCollection = [];
+  let totalPages = 0;
 
-    axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`, {headers: {'Authorization': DISCOGS_TOKEN}})
-    // Get page Numbers /////////////////////////////////////////////////////////////
-    .then((collection) => {
-      let pages = collection.data.pagination.pages;
-      return pages;
-    })
-    .then((pages) => {
-    // Get Rest of Collection By Pages ///////////////////////////////////////////////
-      for (let i = 1; i <= pages; i++) {
-        axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`)
-        .then((collection) => {
-          let releases = collection.data.releases;
+  const assembleCollection = async () => {
+    try {
+      let collection = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`, {headers: {'Authorization': DISCOGS_TOKEN}})
+      totalPages = collection.data.pagination.pages;
 
-          for (let i = 0; i < releases.length; i++) {
-            fullCollection.push(releases[i])
-          }
-          console.log(fullCollection[0].basic_information.formats)
-          db.insertCollection()
-        })
+      const extractCollection = async (pages) => {
+        let fullCollection = [];
+
+        for (let i = 1; i <= pages; i++) {
+          let collectionChunk = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`, {headers: {'Authorization': DISCOGS_TOKEN}})
+          fullCollection = fullCollection.concat(collectionChunk.data.releases)
+          console.log(fullCollection.length)
+        }
       }
-      res.json(fullCollection.length)
-    })
+
+      await extractCollection(totalPages)
+
+
+    } catch (err) {
+      console.error(err)
+    }
+
+  }
+
+  assembleCollection()
+
+  // .then((pages) => {
+  // // Get Rest of Collection By Pages ///////////////////////////////////////////////
+  //   for (let i = 1; i <= pages; i++) {
+  //     axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`)
+  //     .then((collection) => {
+  //       let releases = collection.data.releases;
+
+  //       for (let i = 0; i < releases.length; i++) {
+  //         fullCollection.push(releases[i])
+  //       }
+  //       console.log(fullCollection[0])
+
+  //       db.insertCollection(username, fullCollection, (err, response) => {
+  //         if (err) {
+  //           console.error(err)
+  //         } else {
+  //           res.send()
+  //         }
+  //       })
+  //     })
+  //   }
+  //   res.json(fullCollection.length)
+  // })
+
 })
 
 
+// axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`, {headers: {'Authorization': DISCOGS_TOKEN}})
+//     // Get page Numbers /////////////////////////////////////////////////////////////
+//     .then((collection) => {
+//       let pages = collection.data.pagination.pages;
+//       return pages;
+//     })
+//     .then((pages) => {
+//     // Get Rest of Collection By Pages ///////////////////////////////////////////////
+//       for (let i = 1; i <= pages; i++) {
+//         axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`)
+//         .then((collection) => {
+//           let releases = collection.data.releases;
 
+//           for (let i = 0; i < releases.length; i++) {
+//             fullCollection.push(releases[i])
+//           }
+//           console.log(fullCollection[0])
+
+//           db.insertCollection(username, fullCollection, (err, response) => {
+//             if (err) {
+//               console.error(err)
+//             } else {
+//               res.send()
+//             }
+//           })
+//         })
+//       }
+//       res.json(fullCollection.length)
+//     })
 
 
 
