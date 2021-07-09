@@ -4,8 +4,7 @@ import {Grid} from '@material-ui/core'
 
 function RecordDisplay({currentRecord}) {
 
-
-
+  console.log(currentRecord)
 
 
   return(

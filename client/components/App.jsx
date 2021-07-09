@@ -9,6 +9,7 @@ function App() {
   const [currentCollection, setCurrentCollection] = useState(null);
   const [filteredCollection, setFilteredCollection] = useState([]);
   const [username, setUsername] = useState('');
+  const [genre, setGenre] = useState('')
   const [currentRecord, setCurrentRecord] = useState(null);
   const [previousShuffle, setPreviousShuffle] = useState([])
 
@@ -48,8 +49,8 @@ function App() {
     setUsername(e.target.value);
   }
 
-  const handleGenreSelection = (e) => {
-
+  const handleGenreInput = (e) => {
+    setGenre(e.target.value);
   }
 
 
@@ -63,10 +64,12 @@ function App() {
         <ShuffleInput
           onShuffle={onShuffle}
           handleUsernameInput={handleUsernameInput}
+          handleGenreInput={handleGenreInput}
           shuffler={shuffler}
           currentCollection={currentCollection}
           currentRecord={currentRecord}
           previousShuffle={previousShuffle}
+          genre={genre}
         />
       </Grid>
       <Grid item xs={12}>

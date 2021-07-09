@@ -7,10 +7,25 @@ import {Grid, Button, TextField} from '@material-ui/core';
 function ShuffleInput(props) {
 
   useEffect(() => {
-    if (props.currentCollection) {
+    if (props.currentCollection && props.genre) {
+      let releases = props.currentCollection.releases;
+      let filteredArray = []
+
+      for (let i = 0; i < releases.length; i++) {
+        // console.log(releases[i].basic_information.genres)
+        let genres = releases[i].basic_information.genres
+        for (let j = 0; j < genres.length; j++) {
+          if (props.genre.toLowerCase() === genres[j].toLowerCase()) {
+            filteredArray.push(releases[i]);
+          }
+        }
+      }
+      props.shuffler(filteredArray)
+    } else if (props.currentCollection) {
+      // console.log(props.currentCollection.releases)
       props.shuffler(props.currentCollection.releases)
     }
-  }, [props.currentCollection])
+  }, [props.currentCollection, props.genre])
 
 
 
@@ -32,7 +47,7 @@ function ShuffleInput(props) {
             <TextField className="textField" label="username" variant="filled" onChange={props.handleUsernameInput}></TextField>
           </Grid>
           <Grid item xs={2} style={{textAlign: "right"}}>
-            <TextField className="textField" label="genre (optional)" variant="outlined" ></TextField>
+            <TextField className="textField" label="genre (optional)" variant="outlined" onChange={props.handleGenreInput}></TextField>
           </Grid>
           <Grid item xs={4}></Grid>
           <Grid item xs={4}></Grid>
