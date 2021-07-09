@@ -76,7 +76,6 @@ const insertCollection = (username, releases, callback) => {
       callback(null, response)
     }
   })
-
 }
 
 const getCollection = (username, callback) => {
@@ -88,6 +87,10 @@ const getCollection = (username, callback) => {
     }
   })
 }
+
+// const checkExistence = (username, callback) => {
+//   UserCollection.findOne({username}, (err, ))
+// }
 
 
 
