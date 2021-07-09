@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import ShuffleInput from './ShuffleInput';
 import RecordDisplay from './RecordDisplay'
 import axios from 'axios';
-import {Grid} from '@material-ui/core';
+import {Grid} from '@material-ui/core/';
 
 function App() {
 
@@ -11,14 +11,6 @@ function App() {
   const [username, setUsername] = useState('');
   const [currentRecord, setCurrentRecord] = useState(null);
   const [previousShuffle, setPreviousShuffle] = useState([])
-
-  // useEffect(() => {
-  //   if (currentCollection) {
-  //     console.log(currentCollection.releases)
-  //     console.log(previousShuffle)
-  //     shuffler(currentCollection.releases)
-  //   }
-  // }, [currentCollection])
 
 
   const shuffler = (array) => {
@@ -43,8 +35,6 @@ function App() {
     }
   }
 
-
-
   const onShuffle = async () => {
     const options = {
       params: {username: username}
@@ -54,17 +44,22 @@ function App() {
   }
 
 
-
   const handleUsernameInput = (e) => {
     setUsername(e.target.value);
-    console.log(username)
+  }
+
+  const handleGenreSelection = (e) => {
+
   }
 
 
 
   return (
-    <Grid container>
+    <Grid container id="mainApp" >
       <Grid item xs={12}>
+
+      </Grid>
+      <Grid item xs={12} style={{height: "60vh"}}>
         <ShuffleInput
           onShuffle={onShuffle}
           handleUsernameInput={handleUsernameInput}

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Grid} from '@material-ui/core';
+import {Grid, Button, TextField} from '@material-ui/core';
 
 
 
@@ -19,17 +19,27 @@ function ShuffleInput(props) {
   return (
 
     <Grid container>
-      <Grid item xs={12}>
-      <h3>Enter a username to shuffle</h3>
+      <Grid item xs={4}></Grid>
+      <Grid item xs={4}>
+      <h1 id="mainTitle" >SHUFFLR</h1>
+      <h2 className="titles" >Enter your Discogs username</h2>
       </Grid>
+      <Grid item xs={4}></Grid>
       <Grid item xs={12}>
-        <Grid container>
-          <Grid item xs={12}>
-            <input onChange={props.handleUsernameInput}></input>
+        <Grid container style={{}}>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={2} style={{textAlign: "left"}}>
+            <TextField className="textField" label="username" variant="filled" onChange={props.handleUsernameInput}></TextField>
           </Grid>
-          <Grid item xs={12}>
-            <button onClick={props.onShuffle}>Shuffle</button>
+          <Grid item xs={2} style={{textAlign: "right"}}>
+            <TextField className="textField" label="genre (optional)" variant="outlined" ></TextField>
           </Grid>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}></Grid>
+          <Grid item xs={4}>
+            <Button id="button" variant="contained" onClick={props.onShuffle}>Shuffl</Button>
+          </Grid>
+          <Grid item xs={4}></Grid>
         </Grid>
       </Grid>
       <Grid></Grid>
