@@ -6,8 +6,11 @@ import {Grid} from '@material-ui/core';
 
 function ShuffleInput(props) {
 
-
-
+  useEffect(() => {
+    if (props.currentCollection) {
+      props.shuffler(props.currentCollection.releases)
+    }
+  }, [props.currentCollection])
 
 
 

@@ -6,24 +6,29 @@ import {Grid} from '@material-ui/core';
 
 function App() {
 
-  const [currentCollection, setCurrentCollection] = useState('');
+  const [currentCollection, setCurrentCollection] = useState(null);
   const [filteredCollection, setFilteredCollection] = useState([]);
   const [username, setUsername] = useState('');
-  const [currentRecord, setCurrentRecord] = useState('');
+  const [currentRecord, setCurrentRecord] = useState(null);
   const [previousShuffle, setPreviousShuffle] = useState([])
 
   // useEffect(() => {
-  //   setCurrentRecord(currentCollection[0])
+  //   if (currentCollection) {
+  //     console.log(currentCollection.releases)
+  //     console.log(previousShuffle)
+  //     shuffler(currentCollection.releases)
+  //   }
   // }, [currentCollection])
 
 
   const shuffler = (array) => {
-    let randomInt = () => {
-      return randomIndex = Math.floor(Math.random() * ((array.length - 1) - 0))
+    let randomInteger = () => {
+      return Math.floor(Math.random() * ((array.length - 1) - 0))
     }
 
     let randomInt = randomInteger()
     while (previousShuffle.includes(array[randomInt])) {
+      console.log(array[randomInt].id)
       randomInt = randomInteger()
     }
 
@@ -31,8 +36,10 @@ function App() {
       let tempStorage = previousShuffle.slice();
       tempStorage.pop()
       setPreviousShuffle([array[randomInt], ...tempStorage])
+      setCurrentRecord(array[randomInt])
     } else {
       setPreviousShuffle([array[randomInt], ...previousShuffle])
+      setCurrentRecord(array[randomInt])
     }
   }
 
@@ -43,9 +50,10 @@ function App() {
       params: {username: username}
     }
     let userCollection = await axios.get('http://localhost:3001/collection', options)
-    setCurrentCollection(userCollection.data)
-    console.log(currentCollection)
+    await setCurrentCollection(userCollection.data)
   }
+
+
 
   const handleUsernameInput = (e) => {
     setUsername(e.target.value);
@@ -57,10 +65,17 @@ function App() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <ShuffleInput onShuffle={onShuffle} handleUsernameInput={handleUsernameInput}/>
+        <ShuffleInput
+          onShuffle={onShuffle}
+          handleUsernameInput={handleUsernameInput}
+          shuffler={shuffler}
+          currentCollection={currentCollection}
+          currentRecord={currentRecord}
+          previousShuffle={previousShuffle}
+        />
       </Grid>
       <Grid item xs={12}>
-        <RecordDisplay />
+        <RecordDisplay currentRecord={currentRecord}/>
       </Grid>
     </Grid>
   );
