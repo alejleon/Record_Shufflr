@@ -12,7 +12,6 @@ function ShuffleInput(props) {
       let filteredArray = []
 
       for (let i = 0; i < releases.length; i++) {
-        // console.log(releases[i].basic_information.genres)
         let genres = releases[i].basic_information.genres
         for (let j = 0; j < genres.length; j++) {
           if (props.genre.toLowerCase() === genres[j].toLowerCase()) {
@@ -22,7 +21,6 @@ function ShuffleInput(props) {
       }
       props.shuffler(filteredArray)
     } else if (props.currentCollection) {
-      // console.log(props.currentCollection.releases)
       props.shuffler(props.currentCollection.releases)
     }
   }, [props.currentCollection, props.genre])
