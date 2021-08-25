@@ -12,6 +12,15 @@ function RecordDisplay({currentRecord}) {
       <Grid container>
         <Grid item xs={4}></Grid>
         <Grid item xs={4}>
+          {currentRecord &&
+          <div id='imageContainer'>
+            <img id='image' alt='Record cover image' src={currentRecord.basic_information.cover_image} />
+          </div>}
+        </Grid>
+        <Grid item xs={4}></Grid>
+
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
           <h2 id="album" className="titles">{currentRecord && currentRecord.basic_information.title}</h2>
         </Grid>
         <Grid item xs={4}></Grid>

@@ -1,0 +1,3 @@
+const DISCOGS_TOKEN = 'INSERT_YOUR_TOKEN_HERE';
+
+module.exports =  DISCOGS_TOKEN;

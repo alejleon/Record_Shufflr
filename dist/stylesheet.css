@@ -44,6 +44,16 @@ body {
   border-radius: 5px;
 }
 
+#imageContainer {
+text-align: center;
+
+}
+
+#image {
+  width: 100%
+
+}
+
 #artist {
   font-size: 3.5vh;
   /* border: 2px solid black; */

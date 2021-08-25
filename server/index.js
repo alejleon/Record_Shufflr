@@ -17,8 +17,6 @@ app.use(express.json());
 
 
 
-
-
 app.get("/test", (req, res) => {
   res.json({ message: "Hello from server!!" });
 });
@@ -40,12 +38,12 @@ app.get('/collection', (req, res) => {
 
         const assembleCollection = async () => {
           try {
-            let collection = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`, {headers: {'Authorization': DISCOGS_TOKEN}})
+            let collection = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases`, {headers: {'Authorization': 'Discogs token=' + DISCOGS_TOKEN}})
             totalPages = collection.data.pagination.pages;
 
             const extractCollection = async (pages) => {
               for (let i = 1; i <= pages; i++) {
-                let collectionChunk = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`, {headers: {'Authorization': DISCOGS_TOKEN}})
+                let collectionChunk = await axios.get(`https://api.discogs.com/users/${username}/collection/folders/0/releases?page=${i}`, {headers: {'Authorization': 'Discogs token=' + DISCOGS_TOKEN}})
                 fullCollection = fullCollection.concat(collectionChunk.data.releases)
                 // console.log(fullCollection.length)
               }

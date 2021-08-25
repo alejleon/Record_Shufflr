@@ -14,6 +14,7 @@ function App() {
   const [previousShuffle, setPreviousShuffle] = useState([])
 
 
+  // Shuffling Mechanism ////////////////////////////////
   const shuffler = (array) => {
     let randomInteger = () => {
       return Math.floor(Math.random() * ((array.length - 1) - 0))
@@ -25,7 +26,7 @@ function App() {
       randomInt = randomInteger()
     }
 
-    if (previousShuffle.length >= 15) {
+    if (previousShuffle.length >= 25) {
       let tempStorage = previousShuffle.slice();
       tempStorage.pop()
       setPreviousShuffle([array[randomInt], ...tempStorage])
@@ -47,6 +48,7 @@ function App() {
 
   const handleUsernameInput = (e) => {
     setUsername(e.target.value);
+    console.log(username)
   }
 
   const handleGenreInput = (e) => {
@@ -54,13 +56,12 @@ function App() {
   }
 
 
-
   return (
     <Grid container id="mainApp" >
       <Grid item xs={12}>
 
       </Grid>
-      <Grid item xs={12} style={{height: "60vh"}}>
+      <Grid item xs={12} style={{height: "40vh"}}>
         <ShuffleInput
           onShuffle={onShuffle}
           handleUsernameInput={handleUsernameInput}
