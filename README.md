@@ -32,10 +32,19 @@ npm install
 ```
 
 ## Usage
+To run the website locally:
 
-1. Input your Discogs username (or someone else's!) into the text field.
-2. Input a specific genre you want to shuffle through (optional).
-3. Hit the shuffle button and enjoy some tunes. 
+1. Spin up the server
+```
+npm start
+```
+3. run the app
+```
+npm run react-dev
+```
+5. Input your Discogs username (or someone else's!) into the text field.
+6. Input a specific genre you want to shuffle through (optional).
+7. Hit the shuffle button and enjoy some tunes. 
 
 ## Preview
 
