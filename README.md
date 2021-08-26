@@ -2,7 +2,7 @@
 
 ## Overview
 
-Shufflr is an app that takes a user's Discogs username and returns a shuffled record from their record collection to be spun up.
+Shufflr is an app that takes a user's Discogs username and returns a shuffled record from their record collection to be played.
 
 ## Technology
 
@@ -33,4 +33,10 @@ npm install
 
 ## Usage
 
+1. Input your Discogs username (or someone else's!) into the text field.
+2. Input a specific genre you want to shuffle through (optional).
+3. Hit the shuffle button and enjoy some tunes. 
+
 ## Preview
+
+
