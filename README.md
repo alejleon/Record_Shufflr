@@ -38,13 +38,13 @@ To run the website locally:
 ```
 npm start
 ```
-3. run the app
+2. run the app
 ```
 npm run react-dev
 ```
-5. Input your Discogs username (or someone else's!) into the text field.
-6. Input a specific genre you want to shuffle through (optional).
-7. Hit the shuffle button and enjoy some tunes. 
+3. Input your Discogs username (or someone else's!) into the text field.
+4. Input a specific genre you want to shuffle through (optional).
+5. Hit the shuffle button and enjoy some tunes. 
 
 ## Preview
 
