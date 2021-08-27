@@ -45,8 +45,20 @@ npm start
 npm run react-dev
 ```
 3. Input your Discogs username (or someone else's!) into the text field.
+
+![username input demo](demo_gifs/usernameInput.gif)
+
+---
+
 4. Input a specific genre you want to shuffle through (optional).
+
+![username input demo](demo_gifs/genreInput.gif)
+
+---
+
 5. Hit the shuffle button and enjoy some tunes. 
+
+![username input demo](demo_gifs/shuffleDemo.gif)
 
 
 
