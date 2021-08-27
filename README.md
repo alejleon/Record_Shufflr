@@ -4,7 +4,7 @@
 
 Shufflr is an app that takes a user's Discogs username and returns a shuffled record from their record collection to be played. 
 
-Don't know what to play? Shufflr is the solution.
+Don't know what to play? Shufflr is here to save the day!
 
 ## Technology
 
